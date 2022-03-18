@@ -6,8 +6,10 @@ to be retrained with the same cadence, necessitating an end-to-end pipeline that
 
 In this project you will build such a pipeline.
 
-## Table of contents
+## Link to W&B public project
+- [W&B Public project](https://wandb.ai/lucas-dantas/nyc_airbnb)
 
+## Table of contents
 - [Introduction](#build-an-ML-Pipeline-for-Short-Term-Rental-Prices-in-NYC)
 - [Preliminary steps](#preliminary-steps)
   * [Fork the Starter Kit](#fork-the-starter-kit)
