@@ -28,7 +28,7 @@ def go(args):
     df = df[idx].copy()
 
     logger.info("Filtering listings withing specific geographic area.")
-    idx = df["longitude"].between(args.min_longitude, -args.max_longitude) & df[
+    idx = df["longitude"].between(args.min_longitude, args.max_longitude) & df[
         "latitude"
     ].between(args.min_latitude, args.max_latitude)
     df = df[idx].copy()
@@ -87,6 +87,34 @@ if __name__ == "__main__":
         "--max_price",
         type=float,
         help="The maximum rental price to consider.",
+        required=True,
+    )
+
+    parser.add_argument(
+        "--min_latitude",
+        type=float,
+        help="The minimum latitude to consider.",
+        required=True,
+    )
+
+    parser.add_argument(
+        "--max_latitude",
+        type=float,
+        help="The maximum latitude price to consider.",
+        required=True,
+    )
+
+    parser.add_argument(
+        "--min_longitude",
+        type=float,
+        help="The minimum longitude to consider.",
+        required=True,
+    )
+
+    parser.add_argument(
+        "--max_longitude",
+        type=float,
+        help="The maximum longitude price to consider.",
         required=True,
     )
 

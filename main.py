@@ -60,6 +60,10 @@ def go(config: DictConfig):
                     "output_description": "Data with outliers and null values removed",
                     "min_price": config["etl"]["min_price"],
                     "max_price": config["etl"]["max_price"],
+                    "min_latitude": config["etl"]["min_latitude"],
+                    "max_latitude": config["etl"]["max_latitude"],
+                    "min_longitude": config["etl"]["min_longitude"],
+                    "max_longitude": config["etl"]["max_longitude"],
                 },
             )
 
@@ -72,8 +76,12 @@ def go(config: DictConfig):
                     "csv": "clean_sample.csv:latest",
                     "ref": "clean_sample.csv:reference",
                     "kl_threshold": config["data_check"]["kl_threshold"],
-                    "min_price": 10,
-                    "max_price": 350,
+                    "min_price": config["etl"]["min_price"],
+                    "max_price": config["etl"]["max_price"],
+                    "min_latitude": config["etl"]["min_latitude"],
+                    "max_latitude": config["etl"]["max_latitude"],
+                    "min_longitude": config["etl"]["min_longitude"],
+                    "max_longitude": config["etl"]["max_longitude"],
                 },
             )
 
