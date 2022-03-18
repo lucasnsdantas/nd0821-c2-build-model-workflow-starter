@@ -24,11 +24,17 @@ def go(args):
     df = pd.read_csv(artifact_local_path)
 
     logger.info("Filtering listings with prices between $10 - $350.")
-    idx = df['price'].between(args.min_price, args.max_price)
+    idx = df["price"].between(args.min_price, args.max_price)
+    df = df[idx].copy()
+
+    logger.info("Filtering listings withing specific geographic area.")
+    idx = df["longitude"].between(args.min_longitude, -args.max_longitude) & df[
+        "latitude"
+    ].between(args.min_latitude, args.max_latitude)
     df = df[idx].copy()
 
     logger.info("Converting last_review from string to datetime.")
-    df['last_review'] = pd.to_datetime(df['last_review'])
+    df["last_review"] = pd.to_datetime(df["last_review"])
 
     logger.info("Saving clean_sample.csv file.")
     df.to_csv(args.output_artifact, index=False)
@@ -49,45 +55,39 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="A very basic data cleaning")
 
     parser.add_argument(
-        "--input_artifact", 
-        type=str,
-        help="Input data to be cleaned.",
-        required=True
+        "--input_artifact", type=str, help="Input data to be cleaned.", required=True
     )
 
     parser.add_argument(
-        "--output_artifact", 
-        type=str,
-        help="Cleaned data.",
-        required=True
+        "--output_artifact", type=str, help="Cleaned data.", required=True
     )
 
     parser.add_argument(
-        "--output_type", 
+        "--output_type",
         type=str,
         help="The type for the output artifact.",
-        required=True
+        required=True,
     )
 
     parser.add_argument(
-        "--output_description", 
+        "--output_description",
         type=str,
         help="The description of the output artifact.",
-        required=True
+        required=True,
     )
 
     parser.add_argument(
-        "--min_price", 
+        "--min_price",
         type=float,
         help="The minimum rental price to consider.",
-        required=True
+        required=True,
     )
 
     parser.add_argument(
-        "--max_price", 
+        "--max_price",
         type=float,
         help="The maximum rental price to consider.",
-        required=True
+        required=True,
     )
 
     args = parser.parse_args()
