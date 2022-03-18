@@ -9,6 +9,10 @@ def pytest_addoption(parser):
     parser.addoption("--kl_threshold", action="store")
     parser.addoption("--min_price", action="store")
     parser.addoption("--max_price", action="store")
+    parser.addoption("--min_latitude", action="store")
+    parser.addoption("--max_latitude", action="store")
+    parser.addoption("--min_longitude", action="store")
+    parser.addoption("--max_longitude", action="store")
 
 
 @pytest.fixture(scope='session')
